@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyages d'Aventure</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  h3{
+    color: rgb(255, 153, 0);
+
+  }
+  .card-content p {
+    white-space: pre-wrap; /* Permet les sauts de ligne automatiques et conserve les sauts manuels */
+    word-wrap: break-word; /* Force la coupure des mots trop longs */
+    margin: 10px 0; /* Ajoute un espace entre les paragraphes */
+    line-height: 1.6; /* Améliore la lisibilité en augmentant l'espace entre les lignes */
+  }
+  @media (max-width: 768px){
+  
+
+  .card {
+        width: 43%; /* Ajuste la largeur des cartes pour qu'elles tiennent sur une ligne */
+        margin-bottom: 20px; /* Marge en bas pour espacer les cartes */
+        border: 2px solid #183bd8;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f7f7fc; /* Fond bleu clair pour les cartes */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+    .card-content p {
+      white-space: pre-wrap; /* Permet les sauts de ligne automatiques et conserve les sauts manuels */
+      word-wrap: break-word; /* Force la coupure des mots trop longs */
+      margin: 10px 0; /* Ajoute un espace entre les paragraphes */
+      line-height: 1.6; /* Améliore la lisibilité en augmentant l'espace entre les lignes */
+    }
+  }
+  
+
+
+</style>
+<body>
+  <header>
+    <h1>Voyages d'Aventure</h1>
+  </header>
+
+  <!-- Barre de recherche -->
+  <section id="searchBar" class="sticky">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Recherchez votre aventure ici"
+      oninput="filterSuggestions()"
+    />
+    <ul id="suggestions" class="suggestions-list"></ul>
+  </section>
+  
+  <!-- Bouton fixe -->
+  <a href="presentation.html" id="fixedButton">Commandez votre article</a>
+
+  <section id="adventureDetails">
+    <!-- Les cartes de voyages seront insérées ici dynamiquement -->
+  </section>
+
+  <!-- Modal pour afficher les photos -->
+  <div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content" id="modalImages"></div>
+  </div>
+  
+  <script>
+    // Charger les voyages et activer le filtrage
+    async function loadAdventures() {
+      try {
+        const response = await fetch('/api/vetement');
+        const voyages = await response.json();
+
+        const adventureDetailsSection = document.getElementById('adventureDetails');
+        const searchInput = document.getElementById('searchInput');
+
+        // Fonction pour afficher les cartes selon un filtre
+        function displayAdventures(filteredVoyages) {
+          adventureDetailsSection.innerHTML = ''; // Nettoyer la section
+          filteredVoyages.forEach((voyage) => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const mainImage = voyage.photo && voyage.photo.length > 0
+              ? voyage.photo[0]
+              : '/uploads/default.jpg';
+
+            card.innerHTML = `
+              <div class="card-image" style="background-image: url('${mainImage}');"></div>
+              <div class="card-content">
+                <div class="contact-button">
+                   <a href="presentation.html" class="contact-link">
+                    <img src="../photo/WWW.jpg" class="whatsapp-icon" alt="Contact">
+                    Acheter cette aventure
+                  </a>
+               <h3>${voyage.P_NUMERO_COMMANDE}</h3>
+                <h2>${voyage.title}</h2>
+             <p>${voyage.description.replace(/\n/g, '<br>',)}</p>
+                <h2>${voyage.price} DA</h2>
+                <p><strong>Destination : ${voyage.destination}</strong></p>
+                <p><strong>Date : ${new Date(voyage.date).toLocaleDateString()}</strong></p>
+                
+                </div>
+              </div>
+            `;
+
+            // Ajouter un événement pour ouvrir le modal avec toutes les photos
+            card.querySelector('.card-image').addEventListener('click', () => {
+              openModal(voyage.photo || []);
+            });
+
+            adventureDetailsSection.appendChild(card);
+          });
+        }
+
+        // Afficher initialement tous les voyages
+        displayAdventures(voyages);
+
+        // Ajouter un événement pour filtrer au fur et à mesure que l'utilisateur tape
+        searchInput.addEventListener('input', (event) => {
+          const searchTerm = event.target.value.toLowerCase();
+          const filteredVoyages = voyages.filter((voyage) =>
+            voyage.title.toLowerCase().includes(searchTerm) ||
+            voyage.description.toLowerCase().includes(searchTerm)
+          );
+          displayAdventures(filteredVoyages);
+        });
+      } catch (error) {
+        console.error('Erreur lors du chargement des voyages:', error);
+      }
+    }
+
+    // Fonction pour ouvrir le modal avec les images
+    function openModal(images) {
+      const modalImagesContainer = document.getElementById("modalImages");
+      modalImagesContainer.innerHTML = ""; // Vider le contenu précédent
+
+      images.forEach((image) => {
+        const img = document.createElement("img");
+        img.src = image;
+        img.alt = "Image de voyage";
+        modalImagesContainer.appendChild(img);
+      });
+
+      document.getElementById("modal").style.display = "block"; // Afficher le modal
+    }
+
+    // Fonction pour fermer le modal
+    function closeModal() {
+      document.getElementById("modal").style.display = "none"; // Masquer le modal
+    }
+
+    // Charger les voyages dès que la page est prête
+    window.onload = loadAdventures;
+  </script>
+</body>
+</html>

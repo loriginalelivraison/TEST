@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un Produit</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #2e91f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #343a40;
+    }
+    h1 {
+      margin: 20px;
+    }
+    .form-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      width: calc(100% - 20px);
+      max-width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    small {
+      font-size: 0.8rem;
+      color: #6c757d;
+    }
+  </style>
+  
+</head>
+<body>
+  <h1>Ajouter un Produit</h1>
+  <div class="form-container">
+    <form action="/voyages" method="POST" enctype="multipart/form-data">
+      <label for="title">Nom du produit :</label>
+      <input type="text" name="title" id="title" placeholder="Nom du produit" required maxlength="20">
+      <label for="categorie">Catégorie :</label>
+      <select name="categorie" id="categorie" required>
+        <option value="" disabled selected>Sélectionnez une catégorie</option>
+        <option value="Aventure">Aventure</option>
+        <option value="Pharma">Pharma</option>
+        <option value="Culture">Culture</option>
+        <option value="Cosmetique">Cosmetique</option>
+        <option value="Telephone">Téléphone</option>
+        <option value="Chocolats">Chocolats</option>
+        <option value="Accauto">Accessoire Auto</option>
+        <option value="Vetement">Vêtement</option>
+        <option value="Jouetetbb">Jouet et Bébé</option>
+        <option value="Outils">Outils</option>
+        <option value="Autre">Autre</option>
+      </select>
+      <label for="description">Description :</label>
+      <textarea name="description" id="description" placeholder="Description détaillée" required></textarea>
+      <label for="price">Prix :</label>
+<input type="number" name="price" id="price" placeholder="Prix du produit en DZD" required min="0" step="0.01">
+
+      <label for="destination">Lieu :</label>
+      <select name="destination" id="destination" required>
+        <option value="" disabled selected>Sélectionnez un lieu</option>
+        <option value="ORAN">ORAN</option>
+        <option value="ALGER">ALGER</option>
+        <option value="MOSTAGANEM">MOSTAGANEM</option>
+        <option value="MOSTAGANEM">SETIF</option>
+        
+      </select>
+      <label for="date">Date :</label>
+      <input type="date" name="date" id="date" required>
+      <label for="photo">Photos :</label>
+      <input type="file" name="photo" id="photo" multiple required>
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
+</body>
+</html>

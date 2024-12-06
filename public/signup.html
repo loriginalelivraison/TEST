@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription / Connexion</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 20px;
+    }
+
+    .form-container {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .toggle-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .toggle-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bienvenue, choisissez une option</h1>
+
+  <!-- Conteneur des formulaires -->
+  <div class="container">
+    <!-- Formulaire Inscription -->
+    <!-- Formulaire Inscription -->
+<div class="form-container" id="signupFormContainer">
+  <h2>Inscription</h2>
+  <form id="signupForm">
+    <label>Nom d'utilisateur:</label>
+    <input type="text" name="username" required>
+    <label>Téléphone:</label>
+<input type="tel" name="telephone" required pattern="[0-9]+" title="Veuillez entrer uniquement des chiffres.">
+    <label>Mot de passe:</label>
+    <input type="password" name="password" required>
+    <button type="submit">S'inscrire</button>
+  </form>
+  <div class="toggle-link">
+    <p><a href="#" onclick="toggleForms('login')">Déjà un compte ? Connectez-vous</a></p>
+  </div>
+</div>
+
+
+    <!-- Formulaire Connexion -->
+    <div class="form-container" id="loginFormContainer">
+      <h2>Connexion</h2>
+      <form id="loginForm">
+        <label>Nom d'utilisateur:</label>
+        <input type="text" name="username" required>
+        <label>Mot de passe:</label>
+        <input type="password" name="password" required>
+        <button type="submit">Se connecter</button>
+      </form>
+      <div class="toggle-link">
+        <p><a href="#" onclick="toggleForms('signup')">Pas encore de compte ? Inscrivez-vous</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour basculer entre les formulaires
+    function toggleForms(formType) {
+      if (formType === 'login') {
+        document.getElementById('signupFormContainer').classList.add('hidden');
+        document.getElementById('loginFormContainer').classList.remove('hidden');
+      } else {
+        document.getElementById('loginFormContainer').classList.add('hidden');
+        document.getElementById('signupFormContainer').classList.remove('hidden');
+      }
+    }
+
+    // Gestion de l'inscription
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch("/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        window.location.href = '/order.html';
+      } else {
+        alert(result.error);
+      }
+    });
+
+    // Gestion de la connexion
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch("/loginusers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        window.location.href = '/order.html';
+      } else {
+        alert(result.error);
+      }
+    });
+  </script>
+</body>
+</html>

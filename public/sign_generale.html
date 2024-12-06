@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignaChat - Inscription et Connexion</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #add8e6; /* Bleu clair pour le fond */
+    }
+
+    h1 {
+      text-align: center;
+    }
+    @media (max-width: 768px){
+    .container {
+  display: flex;
+  flex-direction: column; /* Change l'alignement en colonne */
+  align-items: center; /* Centre les éléments horizontalement */
+  gap: 20px; /* Ajoute un espace entre les formulaires */
+}
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      margin-top: 20px;
+    }
+
+    .form-container {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+      background-color: white; /* Fond blanc pour les carrés */
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-container input {
+      padding-right: 40px; /* Création d'espace pour l'emoji */
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 20px; /* Taille de l'emoji */
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1> Inscription ou Connexion</h1>
+  <div class="container">
+    <!-- Formulaire d'Inscription -->
+    <div class="form-container">
+      <h2>Inscription</h2>
+      <form id="signupChatForm">
+        <label for="signupUsername">Nom d'utilisateur:</label>
+        <input type="text" id="signupUsername" name="username" required>
+
+        <label for="signupPhone">Téléphone:</label>
+        <input type="tel" id="signupPhone" name="phone" required pattern="^\+?\d{8,14}$" placeholder="Ex: 0123456789/+213123456789/+33123456789">
+
+        <label for="loginPassword">Mot de passe:</label>
+        <div class="password-container">
+          <input type="password" id="loginPassword" name="password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword('loginPassword', this)">
+            🔍 <!-- Emoji pour l'œil ouvert -->
+          </button>
+        </div>
+
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+
+    <!-- Formulaire de Connexion -->
+    <div class="form-container">
+      <h2>Connexion</h2>
+      <form id="loginChatForm">
+        <label for="loginUsername">Nom d'utilisateur:</label>
+        <input type="text" id="loginUsername" name="username" required>
+
+        <label for="loginPassword">Mot de passe:</label>
+        <div class="password-container">
+          <input type="password" id="loginPassword" name="password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword('loginPassword', this)">
+            🔍 <!-- Emoji pour l'œil ouvert -->
+          </button>
+        </div>
+
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour afficher ou masquer le mot de passe
+    function togglePassword(inputId, toggleButton) {
+      const input = document.getElementById(inputId);
+
+      if (input.type === "password") {
+        input.type = "text";
+        toggleButton.innerHTML = "👁️‍🗨️"; // Emoji pour l'œil fermé
+      } else {
+        input.type = "password";
+        toggleButton.innerHTML = "🔍"; // Emoji pour l'œil ouvert
+      }
+    }
+
+    // Gestion de la soumission du formulaire d'inscription
+    document.getElementById("signupChatForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch("/signup-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        
+        window.location.href = "index.html";
+      } else {
+        alert(result.error || "Erreur lors de l'inscription.");
+      }
+    });
+
+    // Gestion de la soumission du formulaire de connexion
+    document.getElementById("loginChatForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch("/login-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        
+        window.location.href = "index.html";
+      } else {
+        alert(result.error || "Erreur lors de la connexion.");
+      }
+    });
+  </script>
+</body>
+</html>
