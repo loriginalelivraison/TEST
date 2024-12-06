@@ -1,53 +1,90 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choisissez une Option</title>
-  <style> @media (max-width: 768px){
-    
+  <style>
+    @media (max-width: 768px) {
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        z-index: 1;
+        padding: 20px;
+      }
+      .card {
+        width: 300px;
+        height: auto;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+        position: relative;
+        border: 2px solid #183bd8;
+      }
+    }
     .container {
-  display: flex;
-  flex-direction: column; /* Arrange les éléments verticalement */
-  gap: 40px; /* Espacement entre les cartes */
-  align-items: center; /* Centre les cartes horizontalement */
-  z-index: 1; /* Assure que le contenu reste visible */
-  padding: 20px; /* Ajoute un espace autour des cartes */
-}
-
-.card {
-  width: 300px;
-  height: auto; /* Ajuste automatiquement la hauteur si nécessaire */
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-  position: relative;
-  border: 2px solid #183bd8;
-}
-  }
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+      z-index: 1;
+      padding: 20px;
+    }
+    .card {
+      width: 300px;
+      height: auto;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+      position: relative;
+      border: 2px solid #183bd8;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+    .card h2 {
+      font-size: 1.5rem;
+      color: #183bd8;
+    }
+    .card p {
+      color: #555;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- Première carte -->
-    <div class="card">
+    <a href="Liste_commande.html" class="card">
       <img src="photo/comm.jpg" alt="Carte 1">
       <h2>LISTE DES COMMANDES</h2>
       <p>acheter les commandes; et les vendre aux clients</p>
-      <a href="Liste_commande.html"></a>
-    </div>
+    </a>
 
     <!-- Deuxième carte -->
-    <div class="card">
+    <a href="voyage.html" class="card">
       <img src="photo/LISTE.jpg" alt="Carte 2">
       <h2>Présenter vos produits</h2>
       <p>vos produits existent; présentez-les ici</p>
-      <a href="voyage.html"></a>
-    </div>
+    </a>
   </div>
 </body>
 </html>
