@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyages et Aventures</title>
+  <link rel="stylesheet" href="style-categori-card.css">
+<style>
+  @media (max-width: 768px){
+      .card-container {
+  display: grid; /* Utilisation de CSS Grid */
+  grid-template-columns: repeat(2, 1fr); /* Deux colonnes de largeur égale */
+  gap: 22px; /* Espace entre les cartes */
+  padding: 27px;
+  max-width: 110%; /* Assurez-vous qu'il ne dépasse pas la largeur disponible */
+  width: fit-content; /* Ajuste la largeur au contenu */
+  margin: 0 auto; /* Centre horizontalement */
+}
+
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.card-image {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-content {
+  padding: 10px;
+  text-align: center;
+}
+     }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../photo/th.jpg" alt="Logo">
+    </div>
+    <h1></h1>
+
+  </header>
+
+  <main>
+    <section class="card-container">
+      <div class="card clickable-card" onclick="window.location.href='../beach.html'">
+        <div class="card-image" style="background-image: url('../photo/pharma.jpg');"></div>
+        <div class="card-content">
+          <h2>pharmacie</h2>
+          
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/Cosmetique.html'">
+        <div class="card-image" style="background-image: url('../photo/cosmetic.jpg');"></div>
+        <div class="card-content">
+          <h2>Cosmetique</h2>
+          
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/telephone.html'">
+        <div class="card-image" style="background-image: url('../photo/infor.jpg');"></div>
+        <div class="card-content">
+          <h2>informatique</br>mobile</h2>
+          
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/chocolat.html'">
+        <div class="card-image" style="background-image: url('../photo/CHOCO.jpg');"></div>
+        <div class="card-content">
+          <h2>CHOCOLAT<br>FROMAGES</h2>
+         
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/accauto.html'">
+        <div class="card-image" style="background-image: url('../photo/auto.jpg');"></div>
+        <div class="card-content">
+          <h2>accessoire auto</h2>
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/vetement.html'">
+        <div class="card-image" style="background-image: url('../photo/vetement.jpg');"></div>
+        <div class="card-content">
+          <h2>VETEMENT</h2>
+         
+        </div>
+      </div>
+      <div class="card clickable-card" onclick="window.location.href='cat/jouetetbb.html'">
+        <div class="card-image" style="background-image: url('../photo/bb.jpg');"></div>
+        <div class="card-content">
+          <h2>jouetetbb</h2>
+          
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/outils.html'">
+        <div class="card-image" style="background-image: url('../photo/park.jpg');"></div>
+        <div class="card-content">
+          <h2>OUTILS</h2>
+         
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='cat/autre.html'">
+        <div class="card-image" style="background-image: url('../photo/autre.jpg');"></div>
+        <div class="card-content">
+          <h2>AUTRES</h2>
+          
+        </div>
+      </div>
+
+      <div class="card clickable-card" onclick="window.location.href='../order.html'">
+        <div class="card-image" style="background-image: url('../photo/jenetrouvepas.jpg');"></div>
+        <div class="card-content">
+          <h2>COMMANDE SPÉCIALE</h2>
+          
+        </div>
+      </div>
+
+      
+      <!-- Répétez pour d'autres cartes si nécessaire -->
+    </section>
+  </main>
+
+  <center>
+  <footer>
+    
+    <p>&copy; 2024 Livraison Kaba ne fait pas la vente des produit ni des médicaments, elle fait uniquement le lien entre une personne qui veux vendre un produit et une autre personne qui veux l'acheter . Visitez notre <a href="../../index.html" >site officiel</a>.</p>
+  </footer>
+  
+</body>
+</html>

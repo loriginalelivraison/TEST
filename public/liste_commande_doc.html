@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commandes Documentaires</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .search-bar {
+      margin-bottom: 20px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      text-align: left;
+      padding: 10px;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    .btn-delete {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .btn-delete:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+    <form action="Liste_commande.html" method="get">
+        <button type="submit">liste des commandes</button>
+      </form>
+  <div class="container">
+    <h1>Commandes Documentaires</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Rechercher une commande...">
+    </div>
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Produit</th>
+          <th>Quantité</th>
+          <th>Description</th>
+          <th>Photo</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <script>
+    async function fetchOrders() {
+      const response = await fetch('/orders-doc');
+      const orders = await response.json();
+      const tbody = document.querySelector('#ordersTable tbody');
+      tbody.innerHTML = '';
+
+      orders.forEach(order => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${order.orderNumber}</td>
+          <td>${order.productName}</td>
+          <td>${order.quantity}</td>
+          <td>${order.description}</td>
+          <td>${order.phoneNumber}</td>
+        
+          
+          <td><button class="btn-delete" data-id="${order._id}">Supprimer</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', async (e) => {
+          const id = e.target.getAttribute('data-id');
+          await fetch(`/orders-doc/${id}`, { method: 'DELETE' });
+          fetchOrders();
+        });
+      });
+    }
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#ordersTable tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+
+    fetchOrders();
+  </script>
+</body>
+</html>

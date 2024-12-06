@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des Voyages</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  #voyages-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .voyage-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .voyage-card h2 {
+    margin-top: 0;
+  }
+
+  .voyage-card p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+
+  .photos img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+
+  button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #c0392b;
+  }
+
+  #search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+</style>
+<body>
+  <h1>Liste des produits</h1>
+
+  <form action="liste_des_commandes_priv.html" method="get">
+    <button type="submit">liste des commandes</button>
+  </form>
+  <form action="liste_commande_doc_priv.html" method="get">
+    <button type="submit">liste des commandes documentaire</button>
+  </form>
+
+  <!-- Barre de recherche -->
+  <input
+    type="text"
+    id="search-bar"
+    placeholder="Rechercher par numéro de commande..."
+    oninput="filterVoyagesByNumeroCommande()"
+  />
+
+  <!-- Conteneur pour les voyages -->
+  <div id="voyages-container"></div>
+
+  <script>
+    let allVoyages = []; // Variable globale pour stocker tous les voyages
+
+    const API_BASE_URL = '/api'; // Base URL de votre API
+
+    // Fonction pour récupérer et afficher les voyages
+    async function fetchVoyages() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/voyages`);
+        allVoyages = await response.json(); // Stocker tous les voyages récupérés
+
+        displayVoyages(allVoyages); // Afficher tous les voyages
+      } catch (error) {
+        console.error('Erreur lors de la récupération des voyages :', error);
+        document.getElementById('voyages-container').innerHTML = '<p>Erreur lors du chargement des voyages.</p>';
+      }
+    }
+
+    // Fonction pour afficher les voyages
+    function displayVoyages(voyages) {
+      const container = document.getElementById('voyages-container');
+      container.innerHTML = ''; // Effacer les anciens contenus
+
+      if (voyages.length === 0) {
+        container.innerHTML = '<p>Aucun voyage trouvé.</p>';
+        return;
+      }
+
+      voyages.forEach((voyage) => {
+        const voyageCard = document.createElement('div');
+        voyageCard.classList.add('voyage-card');
+
+        voyageCard.innerHTML = `
+          <h2>${voyage.title}</h2>
+          <p><strong>Description:</strong> ${voyage.description}</p>
+          <p><strong>Destination:</strong> ${voyage.destination}</p>
+          <p><strong>Date:</strong> ${new Date(voyage.date).toLocaleDateString()}</p>
+          <p><strong>Numéro de commande:</strong> ${voyage.P_NUMERO_COMMANDE}</p>
+           <h2>${voyage.price} DA</h2>
+          <div class="photos">
+            ${voyage.photo.map((url) => `<img src="${url}" alt="Photo de ${voyage.title}" />`).join('')}
+          </div>
+          <button onclick="deleteVoyage('${voyage._id}')">Supprimer</button>
+        `;
+
+        container.appendChild(voyageCard);
+      });
+    }
+
+    // Fonction pour filtrer les voyages par numéro de commande
+    function filterVoyagesByNumeroCommande() {
+      const searchTerm = document.getElementById('search-bar').value.toLowerCase();
+      const filteredVoyages = allVoyages.filter((voyage) =>
+        voyage.P_NUMERO_COMMANDE && voyage.P_NUMERO_COMMANDE.toLowerCase().includes(searchTerm)
+      );
+
+      displayVoyages(filteredVoyages); // Afficher les voyages filtrés
+    }
+
+    // Fonction pour supprimer un voyage
+   async function deleteVoyage(voyageId, categorie) {
+  if (!confirm('Êtes-vous sûr de vouloir supprimer ce voyage ?')) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/voyages/${categorie}/${voyageId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      alert('Voyage supprimé avec succès.');
+      fetchVoyages(); // Recharger la liste après suppression
+    } else {
+      alert('Erreur lors de la suppression du voyage.');
+    }
+  } catch (error) {
+    console.error('Erreur lors de la suppression :', error);
+    alert('Erreur lors de la suppression du voyage.');
+  }
+}
+
+
+
+    // Charger les voyages au démarrage
+    fetchVoyages();
+  </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Présentation de l'entreprise</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f0f8ff, #ffffff); /* Couleurs plus claires */
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #66b2ff; /* Couleur plus claire */
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    @media (max-width: 768px){
+      .buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Organise les boutons en colonne */
+  align-items: center; /* Centre les boutons horizontalement */
+  gap: 15px; /* Ajoute de l'espace entre chaque bouton */
+}
+.bubble-home {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Positionne le bouton sur la droite */
+  background-color: #007bff;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+    }
+
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 800px;
+      padding: 20px;
+      margin: 20px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      margin: 0;
+      color: #007bff;
+      font-size: 1.8rem;
+    }
+
+    .intro p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .agent-image {
+      margin-top: 20px;
+    }
+
+    .agent-image img {
+      max-width: 200px; /* Taille de l'image */
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .agent-image p {
+      margin-top: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-messenger {
+      background-color: #0078FF;
+    }
+
+    .button-messenger:hover {
+      background-color: #005BB5;
+    }
+
+    .button-whatsapp {
+      background-color: #25D366;
+    }
+
+    .button-whatsapp:hover {
+      background-color: #1DA851;
+    }
+
+    .button-call {
+      background-color: #FF5722;
+    }
+
+    .button-call:hover {
+      background-color: #E64A19;
+    }
+
+    .button i {
+      font-size: 2rem;
+    }
+
+    .return-home-text {
+      position: fixed;
+      bottom: 90px; /* Ajusté pour qu'elle soit juste au-dessus du bouton */
+      right: 20px; /* Alignée avec le bouton Home */
+      font-size: 1rem;
+      color: #333; /* Couleur du texte */
+      background-color: rgba(255, 255, 255, 0.8); /* Fond translucide */
+      padding: 5px 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .bubble-home {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .bubble-home:hover {
+      transform: scale(1.1);
+      background-color: #0056b3;
+    }
+
+    .bubble-home i {
+      font-size: 1.5rem;
+    }
+
+    footer {
+      margin-top: 20px;
+      padding: 10px;
+      text-align: center;
+      background: #66b2ff;
+      color: white;
+      width: 100%;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: #ffeb3b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> Livraison Kaba</h1>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Bienvenue chez Livraison Kaba</h2>
+      <p>
+        Nous sommes spécialisés dans la mise en relation entre le vendeur et l'acheteur, <br>contactez-nous maintenant
+      </p>
+    </div>
+
+    <div class="agent-image">
+      <img src="../../photo/agent4.PNG" alt="Agent Commercial">
+      <p> nous contacter via ,Messenger ,WhatsApp ,Téléphone!</p>
+    </div>
+
+    <div class="buttons">
+      <!-- Bouton Appel Téléphonique -->
+      <a href="tel:+33783073068" class="button button-call">
+        <i class="fas fa-phone-alt"></i>
+        
+      </a>
+      <a>tel:0783073068</a>
+      <!-- Bouton Messenger -->
+      <a href="https://www.facebook.com/newcarsexport" target="_blank" class="button button-messenger">
+        <i class="fab fa-facebook-messenger"></i>
+      </a>
+      
+      
+      
+      <a>kabalivraison</a>
+      <!-- Bouton WhatsApp -->
+      <a href="https://wa.me/0033752028464" target="_blank" class="button button-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        
+      </a>
+      <a>+33783073068</a>
+    </div>
+  </div>
+
+  <!-- Phrase "Retour à l'accueil" -->
+  <p class="return-home-text">SORTIR</p>
+
+  <!-- Bulle flottante pour l'accueil -->
+  <a href="../../index.html" class="bubble-home">
+    <i class="fas fa-home"></i>
+  </a>
+
+  <footer>
+    <p>&copy; 2024 Livraison Kaba ne fait pas la vente des produits ni des médicaments, elle fait uniquement le lien entre une personne qui veut vendre un produit et une autre personne qui veut l'acheter. Visitez notre <a href="../../index.html">site officiel</a>.</p>
+  </footer>
+
+  <!-- Lien vers les icônes Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

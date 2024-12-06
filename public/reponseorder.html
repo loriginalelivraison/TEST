@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmation</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #4caf50, #81c784);
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .confirmation-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-out;
+    }
+
+    .confirmation-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .confirmation-container p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .confirmation-container .icon {
+      font-size: 4rem;
+      color: #fff;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    .confirmation-container button {
+      background-color: #ffffff;
+      color: #4caf50;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-transform: uppercase;
+    }
+
+    .confirmation-container button:hover {
+      background-color: #f1f1f1;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="confirmation-container">
+    <div class="icon">✔️</div>
+    <h1>Commande Enregistré !</h1>
+    <button onclick="redirectToHome2()"> Refaire une commande </button>
+    <p>votre commande est prise en compte ;<br> pour confirmer par telephone contacter nous </p>
+    <button onclick="redirectToHome()"> confirmer par telephone </button>
+    <button onclick="redirectToHome1()"> Retour à L'accueil </button>
+  </div>
+
+  <script>
+    function redirectToHome() {
+      window.location.href = "./categorie/cat/presentation.html"; // Redirige vers la page d'accueil ou une autre page
+    }
+    function redirectToHome1() {
+      window.location.href = "index.html"; // Redirige vers la page d'accueil ou une autre page
+    }
+    function redirectToHome2() {
+      window.location.href = "order.html"; // Redirige vers la page d'accueil ou une autre page
+    }
+  </script>
+</body>
+</html>
