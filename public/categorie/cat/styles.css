@@ -86,22 +86,76 @@ p {
   margin-right: 8px;
 }
 
+/* Bouton fixe (par défaut) */
+#fixedButton {
+  position: fixed;
+  right: 20px; /* Distance depuis le bord droit */
+  bottom: 20px; /* Distance depuis le bas de la page */
+  padding: 15px 20px;
+  background-color: #007bff; /* Couleur bleu moderne */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50px; /* Forme arrondie */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce */
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  z-index: 1001; /* Toujours au-dessus des autres éléments */
+}
+
+/* Effet au survol */
+#fixedButton:hover {
+  background-color: #0056b3; /* Bleu plus sombre */
+  transform: scale(1.1); /* Agrandissement au survol */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre amplifiée */
+}
+
+/* Responsive pour petits écrans (téléphones) */
+@media screen and (max-width: 600px) {
+  #fixedButton {
+    font-size: 14px; /* Taille de texte réduite */
+    padding: 12px 15px; /* Espacement ajusté */
+    right: 10px; /* Ajustement du positionnement à droite */
+    bottom: 10px; /* Ajustement du positionnement en bas */
+  }
+}
+
 /* Responsive: ajustement pour les écrans plus petits */
 @media screen and (max-width: 1200px) {
   .card-container {
     grid-template-columns: repeat(3, 1fr); /* 3 colonnes sur écrans moyens */
   }
+  
 }
 
 @media screen and (max-width: 900px) {
   .card-container {
     grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur écrans plus petits */
   }
+  
 }
 
 @media screen and (max-width: 600px) {
   .card-container {
     grid-template-columns: 1fr; /* 1 colonne sur petits écrans */
+    #fixedButton {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    padding: 15px 20px;
+    background-color: #007bff; /* Bleu moderne */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 50px; /* Forme arrondie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    z-index: 1001; /* Toujours au-dessus du contenu */
+  }
+ 
   }
 }
 
@@ -202,38 +256,7 @@ p {
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Ajout d'une ombre au focus */
 }
 
-/* Bouton fixe */
-#fixedButton {
-  position: fixed;
-  right: 20px;
-  bottom: 480px;
-  padding: 15px 20px;
-  background-color: #007bff; /* Bleu moderne */
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 50px; /* Forme arrondie */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  z-index: 1001; /* Toujours au-dessus du contenu */
-}
 
-/* Effet au survol */
-#fixedButton:hover {
-  background-color: #0056b3; /* Bleu plus sombre */
-  transform: scale(1.1); /* Agrandissement */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre amplifiée */
-}
-
-/* Responsive pour petits écrans */
-@media screen and (max-width: 600px) {
-  #fixedButton {
-    font-size: 14px;
-    padding: 12px 15px;
-  }
-}
 
 /* Style pour le logo centré */
 .logo {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voyages d'Aventure</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <style>
   .card-content p {
@@ -52,7 +53,7 @@
   </section>
   
   <!-- Bouton fixe -->
-  <a href="presentation.html" id="fixedButton">Commandez votre article</a>
+  <a href="presentation.html" id="fixedButton">Commandez</a>
 
   <section id="adventureDetails">
     <!-- Les cartes de voyages seront insérées ici dynamiquement -->
@@ -89,10 +90,8 @@
   <div class="card-image" style="background-image: url('${mainImage}');"></div>
   <div class="card-content">
      <div class="contact-button">
-  <a href="presentation.html" class="contact-link">
-        <img src="../photo/WWW.jpg" class="whatsapp-icon" alt="Contact">
-        Acheter ce Produit
-      </a>
+   <a href="presentation.html" class="contact-link">
+       <i class="fas fa-phone-alt"></i>Acheter ce produit </a>
       <h1>${voyage.P_NUMERO_COMMANDE}</h1>
     <h2>${voyage.title}</h2>
     <p>${voyage.description.replace(/\n/g, '<br>',)}</p>

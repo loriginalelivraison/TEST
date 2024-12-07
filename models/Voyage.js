@@ -45,7 +45,7 @@ VoyageSchemaBase.pre('save', async function (next) {
 
 // Modèles distincts pour chaque catégorie
 const VoyageAventure = mongoose.model('VoyageAventure', VoyageSchemaBase, 'voyagesaventures');
-const VoyagePharma = mongoose.model('VoyagePharma', VoyageSchemaBase, 'voyagespharma');
+const VoyagesPharma = mongoose.model('VoyagesPharma', VoyageSchemaBase, 'voyagespharma');
 const VoyageCulture = mongoose.model('VoyageCulture', VoyageSchemaBase, 'voyagesculture');
 const Cosmetique = mongoose.model('Cosmetique', VoyageSchemaBase, 'cosmetique');
 const Telephone = mongoose.model('Telephone', VoyageSchemaBase, 'telephone');
@@ -58,7 +58,7 @@ const Outils = mongoose.model('Outils', VoyageSchemaBase, 'outils');
 
 module.exports = {
   VoyageAventure,
-  VoyagePharma,
+  VoyagesPharma,
   VoyageCulture,
   Cosmetique,
   Telephone,

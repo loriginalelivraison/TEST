@@ -51,16 +51,18 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      align-items: center; /* Centre les champs pour uniformiser */
   }
 
   label {
       font-weight: bold;
       margin-bottom: 5px;
       color: #495057;
+      align-self: flex-start; /* Aligne les labels à gauche */
   }
 
   input, select, textarea, button {
-      width: 100%;
+      width: 80%; /* Champs plus courts */
       padding: 8px;
       border: 1px solid #ced4da;
       border-radius: 5px;
@@ -80,6 +82,7 @@
       border: none;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      width: 50%; /* Bouton plus court */
   }
 
   button:hover {
@@ -101,17 +104,22 @@
 
   <div class="form-container">
     <form id="orderDocForm" enctype="multipart/form-data">
-      <label>Nom des documents:</label><br>
-      <input type="text" name="productName" required><br><br>
-      <label>Nombre des pages :</label><br>
-      <input type="number" name="quantity" required><br><br>
-      <label>Numéro de téléphone:</label><br>
-<input type="tel" name="phoneNumber" required pattern="^[0-9]{10,15}$"><br><br>
+     
+      <label>Nom des documents:</label>
+      <input type="text" name="productName" required>
 
-      <label>Description:</label><br>
-      <textarea name="description" rows="4" required></textarea><br><br>
-      <label>Ajouter des photos:</label><br>
-      <input type="file" name="photos" multiple accept="image/*"><br><br>
+      <label>Nombre des pages :</label>
+      <input type="number" name="quantity" required>
+
+      <label>Numéro de téléphone:</label>
+      <input type="tel" name="phoneNumber" required pattern="^[0-9]{10,15}$">
+
+      <label>Description:</label>
+      <textarea name="description" rows="4" required></textarea>
+
+      <label>Ajouter des photos:</label>
+      <input type="file" name="photos" multiple accept="image/*">
+
       <button type="submit">Envoyer la commande</button>
     </form>
   </div>

@@ -1,63 +1,364 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LA PHARMACIE </title>
+  <title>LA PHARMACIE</title>
   <link rel="stylesheet" href="styles.css">
-</head>
-<style>
-  h3{
-    color: rgb(255, 153, 0);
+  <!-- Ajouter Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('tt.jpg') no-repeat center center fixed; /* Image de fond */
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #343a40;
+    position: relative; /* Nécessaire pour le voile */
+    background-color: #91cf57;
+}
 
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 230, 233, 0.8); /* Couche transparente */
+    z-index: -1; /* Derrière tout le contenu */
+}
+
+h1{
+    color: rgb(255, 254, 252);
+}
+
+header {
+    background-color: #66b2ff; /* Couleur plus claire */
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.container {
+    background-color: white;
+    border-radius: 15px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px; /* Augmenté pour accueillir plus de cartes */
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+.intro h2 {
+    margin: 0;
+    color: #007bff;
+    font-size: 1.8rem;
+}
+
+.intro p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.agent-image {
+    margin-top: 20px;
+}
+
+.agent-image img {
+    max-width: 200px; /* Taille de l'image */
+    width: 100%;
+    border-radius: 15px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.agent-image p {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+#beachDetails {
+    display: flex;
+    flex-wrap: wrap; /* Permet d'avoir plusieurs lignes */
+    gap: 20px; /* Espacement entre les cartes */
+    justify-content: center; /* Répartition uniforme des cartes */
+}
+
+.card {
+    width: 25%; /* Cartes plus petites (environ 5 cartes par ligne) */
+    border: 2px solid #d87e18;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f7f7fc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    padding: 8px; /* Réduit l'espacement interne */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: flex-start; /* Change pour aligner le contenu vers le haut */
+    height: 320px; /* Réduire la hauteur de la carte */
   }
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card-image {
+    height: 120px; /* Image plus petite */
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 8px;
+    border-radius: 10px;
+  }
+
+  .card-content h3, .card-content h2 {
+    font-size: 0.9rem; /* Titres plus petits */
+    margin: 4px 0;
+  }
+
   .card-content p {
-    white-space: pre-wrap; /* Permet les sauts de ligne automatiques et conserve les sauts manuels */
-    word-wrap: break-word; /* Force la coupure des mots trop longs */
-    margin: 10px 0; /* Ajoute un espace entre les paragraphes */
-    line-height: 1.6; /* Améliore la lisibilité en augmentant l'espace entre les lignes */
+    font-size: 0.8rem; /* Texte plus petit */
+    white-space: normal;
+    margin: 4px 0;
+    line-height: 1.3;
   }
-  @media (max-width: 768px){
-  
 
+
+.card-content .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limite à 2 lignes */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Bouton fixe plus petit */
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Réduit la largeur */
+    height: 60px; /* Réduit la hauteur */
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-messenger {
+    background-color: #0078FF;
+}
+
+.button-messenger:hover {
+    background-color: #005BB5;
+}
+
+.button-whatsapp {
+    background-color: #25D366;
+}
+
+.button-whatsapp:hover {
+    background-color: #1DA851;
+}
+
+.button-call {
+    background-color: #FF5722;
+}
+
+.button-call:hover {
+    background-color: #E64A19;
+}
+
+.button i {
+    font-size: 1.5rem; /* Taille de l'icône réduite */
+}
+
+/* Réduire la taille du bouton "Voir plus" */
+.details-button {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 0.7rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .details-button:hover {
+    background-color: #0056b3;
+  }
+
+.return-home-text {
+    position: fixed;
+    bottom: 90px; /* Ajusté pour qu'elle soit juste au-dessus du bouton */
+    right: 20px; /* Alignée avec le bouton Home */
+    font-size: 1rem;
+    color: #333; /* Couleur du texte */
+    background-color: rgba(255, 255, 255, 0.8); /* Fond translucide */
+    padding: 5px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.bubble-home {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.bubble-home:hover {
+    transform: scale(1.1);
+    background-color: #0056b3;
+}
+
+.bubble-home i {
+    font-size: 1.5rem;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    background: #66b2ff;
+    color: white;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Modal pour afficher une carte entière */
+.modal-card {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-card .modal-content {
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px; /* Coins arrondis */
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-card .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-card .close-modal:hover {
+    background-color: darkred;
+}
+@media (max-width: 1024px) {
   .card {
-        width: 43%; /* Ajuste la largeur des cartes pour qu'elles tiennent sur une ligne */
-        margin-bottom: 20px; /* Marge en bas pour espacer les cartes */
-        border: 2px solid #183bd8;
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: #f7f7fc; /* Fond bleu clair pour les cartes */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-    .card-content p {
-      white-space: pre-wrap; /* Permet les sauts de ligne automatiques et conserve les sauts manuels */
-      word-wrap: break-word; /* Force la coupure des mots trop longs */
-      margin: 10px 0; /* Ajoute un espace entre les paragraphes */
-      line-height: 1.6; /* Améliore la lisibilité en augmentant l'espace entre les lignes */
-    }
+    justify-content: flex-start;
+    height: 320px;
+    width: 30%; /* Deux cartes par ligne */
   }
-  
+}
 
-</style>
+/* Pour les écrans plus petits (moins de 768px), une carte par ligne */
+@media (max-width: 768px) {
+  .card {
+    justify-content: flex-start;
+    height: 320px;
+    width: 30%; /* Toujours deux cartes par ligne, légèrement ajusté */
+  }
+}
+
+
+
+  </style>
+</head>
 <body>
   <header>
-    <h1>Détails de la Plage</h1>
+    <h1>Liste des Produit</h1>
   </header>
 
   <!-- Barre de recherche -->
-  <section id="searchBar" class="sticky">
+  <section id="searchBar" class="sticky" style="background: transparent; border: none; box-shadow: none;">
     <input
       type="text"
       id="searchInput"
-      placeholder="Recherchez votre produit ici "
+      placeholder="Recherchez votre produit ici"
       oninput="filterSuggestions()"
+      style="background: rgba(255, 255, 255, 0.8); color: #000; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
     />
     <ul id="suggestions" class="suggestions-list"></ul>
   </section>
   
   <!-- Bouton fixe -->
-  <a href="presentation.html" id="fixedButton">Commandez votre article</a>
+  <a href="/categorie/cat/presentation.html" id="fixedButton">Commandez</a>
 
   <section id="beachDetails">
     <!-- Les cartes de plages seront insérées ici dynamiquement -->
@@ -68,7 +369,15 @@
     <span class="close" onclick="closeModal()">&times;</span>
     <div class="modal-content" id="modalImages"></div>
   </div>
-  
+
+  <!-- Modal pour afficher une carte entière -->
+  <div id="modalCard" class="modal-card">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeCardModal()">×</button>
+      <div id="modalCardContent"></div>
+    </div>
+  </div>
+
   <script>
     // Charger les voyages et activer le filtrage
     async function loadVoyages() {
@@ -93,18 +402,18 @@
             card.innerHTML = `
               <div class="card-image" style="background-image: url('${mainImage}');"></div>
               <div class="card-content">
-                <div class="contact-button">
-                  <a href="presentation.html" class="contact-link">
-                    <img src="../photo/WWW.jpg" class="whatsapp-icon" alt="Contact">
-                    Acheter ce produit
-                  </a>
-                  <h3>№ : ${voyage.P_NUMERO_COMMANDE}</h3>
+               
                 <h2>${voyage.title}</h2>
-                <p>${voyage.description}</p>
-                   <h2>${voyage.price} DA</h2>
-                <p><strong>Destination : ${voyage.destination}</strong></p>
-                <p><strong>Date : ${new Date(voyage.date).toLocaleDateString()}</strong></p>
-                
+               
+                <h2>${voyage.price} DA</h2>
+               
+                <div class="button-container">
+                  <a href="presentation.html" class="contact-link button button-call">
+                    <i class="fas fa-phone-alt"></i>
+                  </a>
+                  <button class="details-button" onclick="openCardModal(${JSON.stringify(voyage).replace(/"/g, '&quot;')})">
+                    Voir les détails
+                  </button>
                 </div>
               </div>
             `;
@@ -125,9 +434,8 @@
         searchInput.addEventListener('input', (event) => {
           const searchTerm = event.target.value.toLowerCase();
           const filteredVoyages = voyages.filter((voyage) =>
-            voyage.title.toLowerCase().includes(searchTerm)|
+            voyage.title.toLowerCase().includes(searchTerm) ||
             voyage.description.toLowerCase().includes(searchTerm)
-            
           );
           displayVoyages(filteredVoyages);
         });
@@ -144,7 +452,9 @@
       images.forEach((image) => {
         const img = document.createElement("img");
         img.src = image;
-        img.alt = "Image de voyage";
+            img.alt = "Image du produit";
+            img.style.width = "50%";
+            img.style.marginBottom = "10px";
         modalImagesContainer.appendChild(img);
       });
 
@@ -154,6 +464,27 @@
     // Fonction pour fermer le modal
     function closeModal() {
       document.getElementById("modal").style.display = "none"; // Masquer le modal
+    }
+
+    // Fonction pour ouvrir le modal d'une carte
+    function openCardModal(voyage) {
+      const modalContent = document.getElementById('modalCardContent');
+      modalContent.innerHTML = `
+        <div class="card-image" style="background-image: url('${voyage.photo && voyage.photo.length > 0 ? voyage.photo[0] : '/uploads/default.jpg'}'); height: 200px;"></div>
+        <h3>№ : ${voyage.P_NUMERO_COMMANDE}</h3>
+        <h2>${voyage.title}</h2>
+        <p>${voyage.description}</p>
+        <h2>${voyage.price} DA</h2>
+        <p><strong>Destination : ${voyage.destination}</strong></p>
+        <p><strong>Date : ${new Date(voyage.date).toLocaleDateString()}</strong></p>
+      `;
+
+      document.getElementById('modalCard').style.display = 'block';
+    }
+
+    // Fonction pour fermer le modal de la carte
+    function closeCardModal() {
+      document.getElementById('modalCard').style.display = 'none';
     }
 
     // Charger les voyages dès que la page est prête

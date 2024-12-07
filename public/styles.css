@@ -206,7 +206,7 @@ p {
 #fixedButton {
   position: fixed;
   right: 20px;
-  bottom: 480px;
+  bottom: 30px;
   padding: 15px 20px;
   background-color: #007bff; /* Bleu moderne */
   color: white;
@@ -228,10 +228,23 @@ p {
 }
 
 /* Responsive pour petits écrans */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
+ 
   #fixedButton {
-    font-size: 14px;
-    padding: 12px 15px;
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    padding: 15px 20px;
+    background-color: #007bff; /* Bleu moderne */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 50px; /* Forme arrondie */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    z-index: 1001; /* Toujours au-dessus du contenu */
   }
 }
 
@@ -243,8 +256,8 @@ p {
 }
 
 .logo img {
-  width: 100px; /* Taille du logo */
-  height: 100px; /* Taille du logo */
+  width: 80px; /* Taille du logo */
+  height: 80px; /* Taille du logo */
   border-radius: 50%; /* Rend l'image circulaire */
   border: 3px solid #007bff; /* Bordure bleue autour du logo */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce */
@@ -253,8 +266,8 @@ p {
 /* Ajustement responsive du logo */
 @media screen and (max-width: 400px) {
   .logo img {
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
   }
 }
 

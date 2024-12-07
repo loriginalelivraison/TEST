@@ -258,8 +258,20 @@ app.delete('/api/commands/:id', async (req, res) => {
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });
+const { VoyagesPharma } = require('./models/Voyage'); // Assurez-vous que le chemin est correct.
 
+app.get('/api/voyagesPharma', async (req, res) => {
+  try {
+    // Récupérer les données depuis la collection "voyagespharma"
+    const pharmaVoyages = await VoyagesPharma.find();
 
+    // Retourner les données au format JSON
+    res.json(pharmaVoyages);
+  } catch (err) {
+    console.error('Erreur lors de la récupération des voyages pharma :', err);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
 
 
 app.get('/api/telephone', async (req, res) => {
@@ -381,13 +393,6 @@ app.get('/api/voyages', async (req, res) => {
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });
-
-
-
-
-
-
-
 
 
 
