@@ -7,53 +7,24 @@
   <link rel="stylesheet" href="styles.css">
 
   <style>
+    /* Style général */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
     header {
-      background-color: #18e905;
+      background-color: #f8ba0d;
       color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    
-    /* Style pour le bouton de traduction */
-    #language-switch {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 1000;
-      transition: background-color 0.3s ease;
+      padding: 20px;
+      position: relative;
     }
 
-    #language-switch:hover {
-      background-color: #eb910c; /* Change la couleur au survol */
-    }
-
-    /* Nouveau style pour le bouton "Déconnexion" */
-    .logout-button {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1001; /* Assurer qu'il est au-dessus d'autres éléments */
-    }
-
-    .logout-button button {
-      padding: 10px 20px;
-      font-size: 14px;
-      background-color: #007bff; /* Couleur de fond par défaut */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer; /* Change le curseur au survol */
-      transition: background-color 0.3s ease; /* Transition fluide */
-    }
-
-    .logout-button button:hover {
-      background-color: #eb910c; /* Couleur au survol */
+    h1 {
+      margin: 0;
     }
     .card-image {
       height: 200px;
@@ -72,7 +43,7 @@
       margin: 20px; /* Espace autour des cartes */
     }
     .card {
-      width: 40%; /* Ajuste la largeur des cartes pour qu'elles tiennent sur une ligne */
+      width: 23%; /* Ajuste la largeur des cartes pour qu'elles tiennent sur une ligne */
       margin-bottom: 20px; /* Marge en bas pour espacer les cartes */
       border: 2px solid #183bd8;
       border-radius: 5px;
@@ -145,64 +116,101 @@
       font-size: 14px;
     }
   }
+
+    .button-container {
+      text-align: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #eb910c;
+    }
+
+    /* Style pour le bouton "Se connecter" en haut à droite */
+    .login-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .login-button .button {
+      padding: 8px 15px;
+      font-size: 14px;
+      background-color: #007bff;
+    }
+
+    .login-button .button:hover {
+      background-color: #eb910c;
+    }
   </style>
 </head>
 <body>
-  <!-- Bouton de bascule de langue -->
-  <button id="language-switch">🛎️ عربي</button>
-
-  <!-- Nouveau bouton "Déconnexion" -->
-  <div class="logout-button">
-    <button onclick="window.location.href='index_generale.html'">Déconnexion</button>
-  </div>
-  
   <header>
     <div class="logo">
-      <img src="photo/lorigin.png" alt="Logo">
+      <img src="photo/th.jpg" alt="Logo">
     </div>
-    <h1 id="header-title">VOUS ETES CONNECTE</h1>
+    <h1>Je veux un produit KABA</h1>
+    <h2>JE ME CONNECTE ICI</h2>
+
+    <div class="button-container">
+      <a href="sign_generale.html" class="button">S'INSCRIR ICI 👇</a>
+    </div>
+
+    <!-- Bouton "Se connecter" -->
+    <div class="login-button">
+      <a href="sign_generale.html" class="button">Se connecter</a>
+    </div>
   </header>
 
   <main>
-    <section class="card-container card-grid" id="beachDetails">
-      <div class="card clickable-card" onclick="window.location.href='../categorie/categorie.html'">
+    <section class="card-container">
+      <div class="card clickable-card" onclick="window.location.href='sign_generale.html'">
         <div class="card-image" style="background-image: url('photo/acheter.jpg');"></div>
         <div class="card-content">
-          <h2 id="card1-title">ACHETER</h2>
-          <p id="card1-desc">acheter un produit européen caba depuis notre store</p>
+          <h2>ACHETER</h2>
+          <p>Acheter un produit européen caba depuis notre store</p>
         </div>
       </div>
-      
-      <div class="card clickable-card" onclick="window.location.href='order.html'">
-        <div class="card-image" style="background-image: url('photo/commm.jpg');"></div>
+
+      <div class="card clickable-card" onclick="window.location.href='sign_generale.html'">
+        <div class="card-image" style="background-image: url('photo/commande.PNG');"></div>
         <div class="card-content">
-          <h2 id="card2-title">COMMANDE SPÉCIALE</h2>
-          <p id="card2-desc">si vous ne trouvez pas un produit; vous le commandez et on l'achète pour vous</p>
+          <h2>COMMANDE SPÉCIALE</h2>
+          <p>Si vous ne trouvez pas un produit, commandez-le et on l'achète pour vous.</p>
         </div>
       </div>
-      
-      <div class="card clickable-card" onclick="window.location.href='choixeurope.html'">
+
+      <div class="card clickable-card" onclick="window.location.href='sign_generale.html'">
         <div class="card-image" style="background-image: url('photo/vendr.PNG');"></div>
         <div class="card-content">
-          <h2 id="card5-title">VENDRE MES PRODUITS</h2>
-          <p id="card5-desc">acheter un produit commandée et le vendre via notre store</p>
+          <h2>VENDRE EN ALGÉRIE</h2>
+          <p>Acheter un produit commandé et le vendre via notre store.</p>
         </div>
       </div>
-      
-      <div class="card clickable-card" onclick="window.location.href='commande_doc.html'">
+
+      <div class="card clickable-card" onclick="window.location.href='sign_generale.html'">
         <div class="card-image" style="background-image: url('photo/euralg1.png');"></div>
         <div class="card-content">
-          <h2 id="card4-title">ENVOYER UN DOCUMENT</h2>
-          <p id="card4-desc">* envoyez les documents importants ou urgent *      </p>
+          <h2>ENVOYER UN DOCUMENT</h2>
+          <p>Envoyez des documents importants ou urgents (procuration, document administratif...).</p>
         </div>
       </div>
     </section>
   </main>
 
-  <center>
-    <footer>
-      <p id="important">&copy; 2024 Livraison Kaba ne fait pas la vente des produits ni des médicaments, elle fait uniquement le lien entre une personne qui veut vendre un produit et une autre qui veut l'acheter. Visitez notre site.</p>
-    </footer>
-  <script src="traduction/indextrad.js"></script>
+  <footer>
+    <p>  Livraison Kaba ne fait pas la vente de produits ni de médicaments, elle fait uniquement le lien entre une personne qui veut vendre un produit et une autre qui veut l'acheter. Visitez notre site.</p>
+  </footer>
 </body>
 </html>
